@@ -41,7 +41,7 @@ Now we have our 2 PLINK files that are needed for EmmaX later. Next, let's make 
 
 ## Preparing the fastStructure input VCF 
 
-### 1. Filtering out non-synonymous SNPs 
+### 4. Filtering out non-synonymous SNPs 
 We will use the raw VCF again in SnpEff. We first remove non-synonymous SNPs. This is important for population structure analysis because non-synonymous SNPs are under a lot of selective pressure and are therefore not truly represenative of the ancestry but rather adaptation.
 
 First, we annotate our VCFs with SnpEff for functional annotations (synonymous, non-synonymous, etc.)
@@ -54,7 +54,7 @@ Second, we will filter out the non-synonymous SNPs and only keep synonymous SNPs
 - SnpSift
 `
 
-### 2. LD Pruning 
+### 5. LD Pruning 
 We only want to keep SNPs that are independent of one another to avoid redundancy, loci bias, and really, really big files.
 - The plink command for LD pruning is --indep-pairwise, with 3 inputs. The first input is the window size, approx 50 for humans. 
 - The second, 5, is the step size. 
@@ -63,17 +63,17 @@ We only want to keep SNPs that are independent of one another to avoid redundanc
 `plink --vcfname --indep-pairwise 50 5 0.1 
 `
 
-## 3. Population structure grouping 
+## 6. Population structure grouping 
 Now we will use fastStructure to do population structure grouping with 
 
 This file will be used as one of the EmmaX GWAS input files.
 
-## 5. Data Visualization (optional, not really?)
+## 7. Data Visualization (optional, not really?)
 
 We will use PONG to visualize our fastStructure output.
 
-## 6. GWAS 
-This is where it all comes together! You have to use your ORIGINAL, UNFILTERED vcf for this, not the one you filtered - hence, genome-wide.
+## 8. GWAS 
+This is where it all comes together! You have to use your ORIGINAL, UNFILTERED vcf for this, not the one you filtered - hence, genome-wide association and not genome-slim.
 
 ## Other stuff
 
