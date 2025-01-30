@@ -4,7 +4,8 @@ This is a tutorial on how to find population structure groups to use as a confou
 Population structure is an important confounder to include in your genetic association analyses. You might see an association that you think is due to the genotype-phenotype relationship, but is actually due to the fact that the allele is common in one of the (sub)populations in your study. This would lead to false positives, which I don't think you want if you're hoping your paper gets published. 
 
 ## Tools required 
-Most of these are available on the NYUAD Jubail HPC, if you're my colleague.
+(Tsk, colleagues, most of these are available on the NYUAD Jubail HPC).
+
 - [PLINK](https://www.cog-genomics.org/plink/)
 - [SnpEff](https://pcingola.github.io/SnpEff/snpeff/running/)
 - [SnpSift](https://pcingola.github.io/SnpEff/snpsift/introduction/) or [bcftools](https://samtools.github.io/bcftools/howtos/install.html) 
