@@ -35,7 +35,7 @@ Same thing now but for the allele frequency file.
 `plink --bfile plinkfilename --freq --out filename_ofyourchoice
 `
 
-Note that this is different than --maf because we are generating a frequency file, which is passive, not filtering out variants based on the minor allele frequency, which is active. 
+Note that this is different than the --maf argument because we are generating a frequency file, which is passive and retains all variants, _not_ filtering out variants based on the minor allele frequency, which is active. 
 
 Now we have our 2 PLINK files that are needed for EmmaX later. Next, let's make the fastStructure population structure file.
 
