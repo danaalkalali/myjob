@@ -74,7 +74,7 @@ Second, we will filter out the non-synonymous SNPs and only keep synonymous SNPs
 
 
 ## 5. LD Pruning 
-We only want to keep SNPs that are independent of one another to avoid redundancy, loci bias, and really, really big files.
+Now we will filter this only-synonymous-variants VCF one step further. We only want to keep SNPs that are independent of one another to avoid redundancy, loci bias, and really, really big files.
 - The plink command for LD pruning is --indep-pairwise, with 3 inputs.
   - The first input is the window size, approx 50 for humans. 
   - The second, 5, is the step size. 
