@@ -12,6 +12,7 @@ Population structure is an important confounder to include in your genetic assoc
 - [fastStructure](https://rajanil.github.io/fastStructure/)
 - [Pong](https://github.com/ramachandran-lab/pong/blob/master/README.md)
 - [EmmaX](https://genome.sph.umich.edu/wiki/EMMAX)
+  - If you are doing GWAS, you will also need your phenotype file(s). Check the EMMAX documentation on how to prepare phenotype files. 
 - You will also need your vcf file(s), duh!
 
 ## _Preparing PLINK files_
@@ -26,7 +27,6 @@ plink --make-bed --vcf yourvcffilename.vcf --out outputfilenamedesired
 This will make 3 plink files: .bed, .bim, and .fam. From now on, any plink commands can be run with just the file name and not the file extension, and plink will use whichever of the 3 files it needs.
 
 ## 2. Kinship matrix 
-
 Now we can use the plink files to generate the kinship matrix.
 
 ```
@@ -38,7 +38,6 @@ Plink's kinship matrix is an identity-by-state matrix. This means that
 We also input the argument square because that it the matrix required for EmmaX, rather than the default which is triangle.
 
 ## 3. Frequency file 
-
 Same thing now but for the allele frequency file.
 
 ```
@@ -51,7 +50,7 @@ Now we have our 2 PLINK files that are needed for EMMAX later. Next, let's make 
 
 ## _Preparing VCF for fastStructure_
 
-## 4. Filtering out non-synonymous SNPs 
+## 4. Filtering out non-synonymous SNPs
 We will use the raw VCF again in SnpEff. We first remove non-synonymous SNPs. This is important for population structure analysis because non-synonymous SNPs are under a lot of selective pressure and are therefore not truly represenative of the ancestry but rather adaptation.
 
 First, we annotate our VCFs with SnpEff for functional annotations (synonymous, non-synonymous, intergenic, intron, UTR, up/downstream, etc.)
@@ -101,10 +100,22 @@ This file will be used as one of the EmmaX GWAS input files.
 
 We will use PONG to visualize our fastStructure output.
 
+## 8. Format fastStructure file for EMMAX
+
 ## _GWAS_
 
-## 8. EMMAX 
+## 9. EMMAX 
 This is where it all comes together! You have to use your ORIGINAL, UNFILTERED vcf for this, not the one you filtered - hence, genome-wide and not genome-slim.
+
+Checklist:
+
+- PLINK frequency file `.frq`
+- PLINK kinship matrix `.rel`
+- fastStructure population groups ``
+
+```
+emmax -v -d 
+```
 
 ## _Other stuff_
 
