@@ -100,6 +100,9 @@ This file will be used as one of the EmmaX GWAS input files.
 
 We will use PONG to visualize our fastStructure output.
 
+
+Now you are done with your population structure analysis. The next two steps are if you want to do GWAS and use the population structure as a confounding variable. 
+
 ## 8. Format fastStructure file for EMMAX
 
 ## _GWAS_
