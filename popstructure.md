@@ -51,15 +51,27 @@ Now we have our 2 PLINK files that are needed for EmmaX later. Next, let's make 
 ## 4. Filtering out non-synonymous SNPs 
 We will use the raw VCF again in SnpEff. We first remove non-synonymous SNPs. This is important for population structure analysis because non-synonymous SNPs are under a lot of selective pressure and are therefore not truly represenative of the ancestry but rather adaptation.
 
-First, we annotate our VCFs with SnpEff for functional annotations (synonymous, non-synonymous, etc.)
+First, we annotate our VCFs with SnpEff for functional annotations (synonymous, non-synonymous, intergenic, intron, UTR, up/downstream, etc.)
+
+`java -Xmx90g -jar snpEff.jar GRCh38.105  yourvcf.vcf > yourannotatedvcf.vcf 
+`
+
+Please change how much RAM you allocate for java in the -Xmx__g argument. Also make sure you are using your correct reference genome, in my case GRCh38.105.
 
 
 Second, we will filter out the non-synonymous SNPs and only keep synonymous SNPs. You can do this with bcftools or SnpSift, whichever you prefer. 
 
-- Bcftools
+- **Bcftools**
+
+`bcftools filter -i 'INFO/ANN~"missense_variant|stop_gained|stop_lost|start_lost|frameshift_variant"' yourfile.vcf -o nonsyn.vcf
 `
-- SnpSift
+
+
+- **SnpSift**
+
+`java -jar SnpSift.jar filter "(ANN[*].EFFECT has 'missense_variant') | (ANN[*].EFFECT has 'stop_gained') | (ANN[*].EFFECT has 'frameshift_variant')" yourfile.vcf > nonsyn.vcf
 `
+
 
 ## 5. LD Pruning 
 We only want to keep SNPs that are independent of one another to avoid redundancy, loci bias, and really, really big files.
@@ -69,9 +81,9 @@ We only want to keep SNPs that are independent of one another to avoid redundanc
 
 `plink --vcfname --indep-pairwise 50 5 0.1 
 `
-## _fastStructure_
+## _Population structure grouping_
 
-## 6. Population structure grouping 
+## 6. fastStructure  
 Now we will use fastStructure to do population structure grouping with 
 
 This file will be used as one of the EmmaX GWAS input files.
