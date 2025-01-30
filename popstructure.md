@@ -21,7 +21,7 @@ Population structure is an important confounder to include in your genetic assoc
 plink --make-bed --vcf yourvcffilename.vcf --out outputfilenamedesired
 ```
 
-(_I add the argument --double-id at the end because of how my IDs are named, plink won't understand if you have an underscore or something funny._)
+(_I add the argument `--double-id` at the end because of how my IDs are named, plink won't understand if you have an underscore or something funny._)
 
 This will make 3 plink files: .bed, .bim, and .fam. From now on, any plink commands can be run with just the file name and not the file extension, and plink will use whichever of the 3 files it needs.
 
@@ -45,9 +45,9 @@ Same thing now but for the allele frequency file.
 plink --bfile plinkfilename --freq --out filename_ofyourchoice
 ```
 
-Note that this is different than the --maf argument because we are generating a frequency file, which is passive and retains all variants, _not_ filtering out variants based on the minor allele frequency, which is active. 
+Note that this is different than the `--maf` argument because we are generating a frequency file, which is passive and retains all variants, _not_ filtering out variants based on the minor allele frequency, which is active. 
 
-Now we have our 2 PLINK files that are needed for EmmaX later. Next, let's make the fastStructure population structure file.
+Now we have our 2 PLINK files that are needed for EMMAX later. Next, let's make the fastStructure population structure file.
 
 ## _Preparing VCF for fastStructure_
 
@@ -60,7 +60,7 @@ First, we annotate our VCFs with SnpEff for functional annotations (synonymous, 
 java -Xmx90g -jar snpEff.jar GRCh38.105  yourvcf.vcf > yourannotatedvcf.vcf 
 ```
 
-Please change how much RAM you allocate for java in the -Xmx__g argument. Also make sure you are using your correct reference genome, in my case GRCh38.105.
+Please change how much RAM you allocate for java in the `-Xmx__g` argument. Also make sure you are using your correct reference genome, in my case GRCh38.105.
 
 
 Second, we will filter out the non-synonymous SNPs and only keep synonymous SNPs. You can do this with bcftools or SnpSift, whichever you prefer. 
@@ -81,7 +81,7 @@ java -jar SnpSift.jar filter "(ANN[*].EFFECT has 'missense_variant') | (ANN[*].E
 
 ## 5. LD Pruning 
 Now we will filter this only-synonymous-variants VCF one step further. We only want to keep SNPs that are independent of one another to avoid redundancy, loci bias, and really, really big files.
-- The plink command for LD pruning is --indep-pairwise, with 3 inputs.
+- The plink command for LD pruning is `--indep-pairwise`, with 3 inputs.
   - The first input is the window size, approx 50 for humans. 
   - The second, 5, is the step size. 
   - The final number is the r^2 threshold. 0.1 is good for a larger sample size and if you want to be more strict, but I would make it 0.2 for my current batch of 100.
@@ -104,7 +104,7 @@ We will use PONG to visualize our fastStructure output.
 ## _GWAS_
 
 ## 8. EMMAX 
-This is where it all comes together! You have to use your ORIGINAL, UNFILTERED vcf for this, not the one you filtered - hence, genome-wide association and not genome-slim.
+This is where it all comes together! You have to use your ORIGINAL, UNFILTERED vcf for this, not the one you filtered - hence, genome-wide and not genome-slim.
 
 ## _Other stuff_
 
