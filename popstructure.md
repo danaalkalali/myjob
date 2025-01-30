@@ -17,8 +17,9 @@ Population structure is an important confounder to include in your genetic assoc
 ## _Preparing PLINK files_
 
 ## 1. Convert your VCF to PLINK format
-`plink --make-bed --vcf yourvcffilename.vcf --out outputfilenamedesired 
-`
+```
+plink --make-bed --vcf yourvcffilename.vcf --out outputfilenamedesired
+```
 
 (_I add the argument --double-id at the end because of how my IDs are named, plink won't understand if you have an underscore or something funny._)
 
@@ -28,8 +29,9 @@ This will make 3 plink files: .bed, .bim, and .fam. From now on, any plink comma
 
 Now we can use the plink files to generate the kinship matrix.
 
-`plink --bfile plinkfilename --make-rel square --out filename_ofyourchoice
-`
+```
+plink --bfile plinkfilename --make-rel square --out filename_ofyourchoice
+```
 
 Plink's kinship matrix is an identity-by-state matrix. This means that 
 
@@ -39,8 +41,9 @@ We also input the argument square because that it the matrix required for EmmaX,
 
 Same thing now but for the allele frequency file.
 
-`plink --bfile plinkfilename --freq --out filename_ofyourchoice
-`
+```
+plink --bfile plinkfilename --freq --out filename_ofyourchoice
+```
 
 Note that this is different than the --maf argument because we are generating a frequency file, which is passive and retains all variants, _not_ filtering out variants based on the minor allele frequency, which is active. 
 
@@ -53,8 +56,9 @@ We will use the raw VCF again in SnpEff. We first remove non-synonymous SNPs. Th
 
 First, we annotate our VCFs with SnpEff for functional annotations (synonymous, non-synonymous, intergenic, intron, UTR, up/downstream, etc.)
 
-`java -Xmx90g -jar snpEff.jar GRCh38.105  yourvcf.vcf > yourannotatedvcf.vcf 
-`
+```
+java -Xmx90g -jar snpEff.jar GRCh38.105  yourvcf.vcf > yourannotatedvcf.vcf 
+```
 
 Please change how much RAM you allocate for java in the -Xmx__g argument. Also make sure you are using your correct reference genome, in my case GRCh38.105.
 
@@ -63,14 +67,16 @@ Second, we will filter out the non-synonymous SNPs and only keep synonymous SNPs
 
 - **Bcftools**
 
-`bcftools filter -i 'INFO/ANN~"missense_variant|stop_gained|stop_lost|start_lost|frameshift_variant"' yourfile.vcf -o nonsyn.vcf
-`
+```
+bcftools filter -i 'INFO/ANN~"missense_variant|stop_gained|stop_lost|start_lost|frameshift_variant"' yourfile.vcf -o nonsyn.vcf
+```
 
 
 - **SnpSift**
 
-`java -jar SnpSift.jar filter "(ANN[*].EFFECT has 'missense_variant') | (ANN[*].EFFECT has 'stop_gained') | (ANN[*].EFFECT has 'frameshift_variant')" yourfile.vcf > nonsyn.vcf
-`
+```
+java -jar SnpSift.jar filter "(ANN[*].EFFECT has 'missense_variant') | (ANN[*].EFFECT has 'stop_gained') | (ANN[*].EFFECT has 'frameshift_variant')" yourfile.vcf > nonsyn.vcf
+```
 
 
 ## 5. LD Pruning 
@@ -80,8 +86,9 @@ Now we will filter this only-synonymous-variants VCF one step further. We only w
   - The second, 5, is the step size. 
   - The final number is the r^2 threshold. 0.1 is good for a larger sample size like 2000, but I would make it 0.2 for my current batch of 100.
 
-`plink --vcfname --indep-pairwise 50 5 0.1 
-`
+```
+plink --vcfname --indep-pairwise 50 5 0.1 
+```
 
 ## _Population structure grouping_
 
