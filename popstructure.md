@@ -84,10 +84,10 @@ Now we will filter this only-synonymous-variants VCF one step further. We only w
 - The plink command for LD pruning is --indep-pairwise, with 3 inputs.
   - The first input is the window size, approx 50 for humans. 
   - The second, 5, is the step size. 
-  - The final number is the r^2 threshold. 0.1 is good for a larger sample size like 2000, but I would make it 0.2 for my current batch of 100.
+  - The final number is the r^2 threshold. 0.1 is good for a larger sample size and if you want to be more strict, but I would make it 0.2 for my current batch of 100.
 
 ```
-plink --vcfname --indep-pairwise 50 5 0.1 
+plink --vcfname --indep-pairwise 50 5 0.2 
 ```
 
 ## _Population structure grouping_
