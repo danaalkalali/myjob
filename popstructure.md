@@ -8,6 +8,7 @@ Population structure is an important confounder to include in your genetic assoc
 - SnpEff
 - FastStructure
 - EmmaX
+- You will also need your vcf files, duh! 
 
 
 ## 1. Filtering out non-synonymous SNPs 
