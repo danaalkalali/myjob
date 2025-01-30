@@ -1,7 +1,7 @@
 # Finding your population structure 
 This is a tutorial on how to find population structure groups to use as a confounder in your GWAS analysis!
 
-Population structure is an important confounder to include in your genetic association analyses. You might see an association that you think is due to the genotype-phenotype relationship, but is actually due to the fact that the allele is common in one of the (sub)populations in your study. This would lead to false positives, which I'm sure you're not a fan of. 
+Population structure is an important confounder to include in your genetic association analyses. You might see an association that you think is due to the genotype-phenotype relationship, but is actually due to the fact that the allele is common in one of the (sub)populations in your study. This would lead to false positives, which I don't think you want if you're hoping your paper gets published. 
 
 ## Tools required 
 Most of these are available on the NYUAD Jubail HPC, if you're my colleague.
@@ -12,6 +12,8 @@ Most of these are available on the NYUAD Jubail HPC, if you're my colleague.
 - [Pong](https://github.com/ramachandran-lab/pong/blob/master/README.md)
 - [EmmaX](https://genome.sph.umich.edu/wiki/EMMAX)
 - You will also need your vcf file(s), duh!
+
+## _Preparing PLINK files_
 
 ## 1. Convert your VCF to PLINK format
 `plink --make-bed --vcf yourvcffilename.vcf --out outputfilenamedesired 
@@ -28,6 +30,10 @@ Now we can use the plink files to generate the kinship matrix.
 `plink --bfile plinkfilename --make-rel square --out filename_ofyourchoice
 `
 
+Plink's kinship matrix is an identity-by-state matrix. This means that 
+
+We also input the argument square because that it the matrix required for EmmaX, rather than the default which is triangle.
+
 ## 3. Frequency file 
 
 Same thing now but for the allele frequency file.
@@ -39,9 +45,9 @@ Note that this is different than the --maf argument because we are generating a 
 
 Now we have our 2 PLINK files that are needed for EmmaX later. Next, let's make the fastStructure population structure file.
 
-## Preparing the fastStructure input VCF 
+## _Preparing VCF for fastStructure_
 
-### 4. Filtering out non-synonymous SNPs 
+## 4. Filtering out non-synonymous SNPs 
 We will use the raw VCF again in SnpEff. We first remove non-synonymous SNPs. This is important for population structure analysis because non-synonymous SNPs are under a lot of selective pressure and are therefore not truly represenative of the ancestry but rather adaptation.
 
 First, we annotate our VCFs with SnpEff for functional annotations (synonymous, non-synonymous, etc.)
@@ -54,7 +60,7 @@ Second, we will filter out the non-synonymous SNPs and only keep synonymous SNPs
 - SnpSift
 `
 
-### 5. LD Pruning 
+## 5. LD Pruning 
 We only want to keep SNPs that are independent of one another to avoid redundancy, loci bias, and really, really big files.
 - The plink command for LD pruning is --indep-pairwise, with 3 inputs. The first input is the window size, approx 50 for humans. 
 - The second, 5, is the step size. 
@@ -62,6 +68,7 @@ We only want to keep SNPs that are independent of one another to avoid redundanc
 
 `plink --vcfname --indep-pairwise 50 5 0.1 
 `
+## _fastStructure_
 
 ## 6. Population structure grouping 
 Now we will use fastStructure to do population structure grouping with 
@@ -72,10 +79,12 @@ This file will be used as one of the EmmaX GWAS input files.
 
 We will use PONG to visualize our fastStructure output.
 
-## 8. GWAS 
+## _GWAS_
+
+## 8. EMMAX 
 This is where it all comes together! You have to use your ORIGINAL, UNFILTERED vcf for this, not the one you filtered - hence, genome-wide association and not genome-slim.
 
-## Other stuff
+## _Other stuff_
 
 #### Using a dummy VCF
 Don't have your own data and just want to practice?
