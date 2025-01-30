@@ -108,7 +108,7 @@ Now you are done with your population structure analysis. The next two steps are
 ## _GWAS_
 
 ## 9. EMMAX 
-This is where it all comes together! You have to use your ORIGINAL, UNFILTERED vcf for this, not the one you filtered - hence, genome-wide and not genome-slim.
+This is where it all comes together! You have to use your _original, unfiltered_ vcf for this, not the one you filtered - hence, genome-wide and not genome-slim.
 
 Checklist:
 
