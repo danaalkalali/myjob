@@ -3,14 +3,15 @@ This is a tutorial on how to find population structure groups to use as a confou
 
 Population structure is an important confounder to include in your genetic association analyses. You might see an association that you think is due to the genotype-phenotype relationship, but is actually due to the fact that the allele is common in one of the (sub)populations in your study. This would lead to false positives, which I'm sure you're not a fan of. 
 
-## Tools required
-- PLINK
-- SnpEff
-- SnpSift or bcftools 
-- fastStructure
+## Tools required 
+Most of these are available on the NYUAD Jubail HPC, if you're my colleague.
+- [PLINK](https://www.cog-genomics.org/plink/)
+- [SnpEff](https://pcingola.github.io/SnpEff/snpeff/running/)
+- [SnpSift](https://pcingola.github.io/SnpEff/snpsift/introduction/) or [bcftools](https://samtools.github.io/bcftools/howtos/install.html) 
+- [fastStructure](https://rajanil.github.io/fastStructure/)
 - [Pong](https://github.com/ramachandran-lab/pong/blob/master/README.md)
-- EmmaX
-- You will also need your vcf files, duh!
+- [EmmaX](https://genome.sph.umich.edu/wiki/EMMAX)
+- You will also need your vcf file(s), duh!
 
 ## 1. Convert your VCF to PLINK format
 `plink --make-bed --vcf yourvcffilename.vcf --out outputfilenamedesired 
