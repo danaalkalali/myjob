@@ -21,19 +21,25 @@ This will make 3 plink files: .bed, .bim, and .fam. From now on, any plink comma
 
 ## 2. Kinship matrix 
 
+Now we can use the plink files to generate the kinship matrix.
+
 `plink --bfile plinkfilename --make-rel square --out filename_ofyourchoice
 `
 
 ## 3. Frequency file 
 
+Now the allele frequency file.
+
 `plink --bfile plinkfilename --freq --out filename_ofyourchoice
 `
 Note that this is different than --maf because we are generating a frequency file, which is passive, not filtering out variants based on the minor allele frequency, which is active. 
 
+Now we have our PLINK files that are needed for EmmaX later. Next, let's make the fastStructure population structure file.
+
 ## Preparing the fastStructure input VCF 
 
 ### 1. Filtering out non-synonymous SNPs 
-We first remove non-synonymous SNPs. This is important for population structure analysis because non-synonymous SNPs are under a lot of selective pressure and are therefore not truly represenative of the ancestry but rather adaptation.
+We will use the raw VCF again in SnpEff. We first remove non-synonymous SNPs. This is important for population structure analysis because non-synonymous SNPs are under a lot of selective pressure and are therefore not truly represenative of the ancestry but rather adaptation.
 
 First, we annotate our VCFs with SnpEff for functional annotations (synonymous, non-synonymous, etc.)
 
