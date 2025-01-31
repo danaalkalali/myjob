@@ -54,3 +54,5 @@ dfuae.columns = ['probeset_id',
 test_2 = pd.merge(df_uaehfs,dfall, on=['SNPS']) # laish chee?
 test_2.shape
 ```
+
+### 4. 
