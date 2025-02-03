@@ -105,6 +105,12 @@ You will have 3 output files, `.log`, `.meanP` for the mean of allele frequencie
 
 This file will be used as one of the EmmaX GWAS input files, however we need to convert it to a `.txt` file to input as a covariate. 
 
+Additionally, fastStructure has a script where it can tell you what it thinks the K should be to either explain the structure or maximize marginal likelihood. 
+
+```
+python chooseK.py --input=output/path/of/structure/script
+```
+
 ## 7. Data Visualization (optional, not really?)
 
 We will use PONG to visualize our fastStructure `.meanQ` file. If you don't want to use another tool, fastStructure actually has the `distruct.py` script that visualizes the `.meanQ`, however does it much rougher than PONG.
@@ -115,7 +121,7 @@ We will use PONG to visualize our fastStructure `.meanQ` file. If you don't want
 
 ```
 python distruct.py
-  -K 3
+  -K numberofpopulations
   --input=path/to/plink
   --output=path/to/output
   --popfile=file/with/labels/ifyouwish
