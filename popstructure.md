@@ -109,6 +109,18 @@ This file will be used as one of the EmmaX GWAS input files, however we need to 
 
 We will use PONG to visualize our fastStructure `.meanQ` file. If you don't want to use another tool, fastStructure actually has the `distruct.py` script that visualizes the `.meanQ`, however does it much rougher than PONG.
 
+- **PONG** 
+
+- **fastStructure `distruct.py` option**
+
+```
+python distruct.py
+  -K 3
+  --input=path/to/plink
+  --output=path/to/output
+  --popfile=file/with/labels/ifyouwish
+  --title="figuretitleifyouwish"
+```
 
 Now you are done with your population structure analysis. The next two steps are if you want to do GWAS and use the population structure as a confounding variable. 
 
