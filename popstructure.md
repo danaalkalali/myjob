@@ -103,11 +103,11 @@ python structure.py -K 3 --input=path/to/plink --output=path/to/output
 
 You will have 3 output files, `.log`, `.meanP` for the mean of allele frequencies, and `.meanQ` for the mean of admixture proportions. Basically, in the meanQ file, each line is an individual with each column showing the proportion of ancestry from a cluster. So we're going to use PONG to help us cluster the individuals. 
 
-This file will be used as one of the EmmaX GWAS input files.
+This file will be used as one of the EmmaX GWAS input files, however we need to convert it to a `.txt` file to input as a covariate. 
 
 ## 7. Data Visualization (optional, not really?)
 
-We will use PONG to visualize our fastStructure `.meanQ` file.
+We will use PONG to visualize our fastStructure `.meanQ` file. If you don't want to use another tool, fastStructure actually has the `distruct.py` script that visualizes the `.meanQ`, however does it much rougher than PONG.
 
 
 Now you are done with your population structure analysis. The next two steps are if you want to do GWAS and use the population structure as a confounding variable. 
@@ -121,9 +121,10 @@ This is where it all comes together! You have to use your _original, unfiltered_
 
 Checklist:
 
-- PLINK frequency file `.frq`
-- PLINK kinship matrix `.rel`
-- fastStructure population groups ``
+- [X] PLINK files derived from original VCF `.bed`, `.bim`, `.fam`
+- [X] PLINK kinship matrix `.rel`
+- [X] fastStructure population clusters `.txt`
+- [X] Phenotype file `.txt`
 
 ```
 emmax -v -d 
