@@ -92,13 +92,22 @@ plink --vcfname --indep-pairwise 50 5 0.2
 ## _Population structure grouping_
 
 ## 6. fastStructure  
-Now we will use fastStructure to do population structure grouping with 
+Now we will use fastStructure to do population structure grouping. The main fastStructure script is `structure.py`
+- The inputs needed for faststructure are the path to the 3 plink files, so they should be all under the same path
+- The `-K` argument is the K-mer of populations you would like fastStructure to divide your sample into, usually around K = 1-10
+- `--full` is an optional argument to output all variational parameters
+
+```
+python structure.py -K 3 --input=path/to/plink --output=path/to/output
+```
+
+You will have 3 output files, `.log`, `.meanP` for the mean of allele frequencies, and `.meanQ` for the mean of admixture proportions. Basically, in the meanQ file, each line is an individual with each column showing the proportion of ancestry from a cluster. So we're going to use PONG to help us cluster the individuals. 
 
 This file will be used as one of the EmmaX GWAS input files.
 
 ## 7. Data Visualization (optional, not really?)
 
-We will use PONG to visualize our fastStructure output.
+We will use PONG to visualize our fastStructure `.meanQ` file.
 
 
 Now you are done with your population structure analysis. The next two steps are if you want to do GWAS and use the population structure as a confounding variable. 
