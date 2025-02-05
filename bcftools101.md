@@ -1,8 +1,8 @@
-# Bcftools basic tutorial 
+# Bcftools Hand-holding  
 
 ## Tools you need
 - Bcftools
-- Tabix (if your VCFs are indexed `.vcf.gz`, mine are)
+- Tabix (if your VCFs are indexed with `.tbi` files, mine are! Otherwise bcftools alone should suffice)
 
 ### Variant calling
 
@@ -46,7 +46,8 @@ Bcftools view -R positions.txt yourvcf.vcf.gz | bcftools query -f '%CHROM\t%POS\
 ```
 
 
-## VCF file statistics 
+### VCF file statistics 
+
 ```
 Bcftools stats yourvcf.vcf.gz
 ```
