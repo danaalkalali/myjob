@@ -57,15 +57,19 @@ Bcftools stats yourvcf.vcf.gz
 
 **Q:** _What's the difference between bcftools and vcftools?_
 
-**A:** The b in bcftools stands for binary.
+**A:** The b in bcftools stands for binary. This refers to the .bcf file which is an indexed version of a vcf. Vcfs can also be indexed without turning into a .bcf but instead having complimentary index files like the .tbi tabix file. Vcftools doesn't support indexed files and only takes unindexed vcfs. Thus, vcftools can be much slower.
 
 
 **Q:** _Are all vcfs supposed to be indexed?_
 
-**A:** 
+**A:** Unless you own a supercomputer.
 
 
 **Q:** _What's the difference between a bcf and a vcf with index files?_
 
 **A:** 
+
+
+**Q:** _Is samtools a conglomerate?_
+**A:** Yes but it's open-source, so...
 
