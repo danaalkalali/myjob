@@ -4,7 +4,7 @@
 - [Bcftools](https://samtools.github.io/bcftools/)
 - [Tabix](http://www.htslib.org/doc/tabix.html) (if your VCFs are indexed with `.tbi` files, mine are! Otherwise bcftools alone should suffice)
 
-### Variant calling
+## Variant calling
 
 - **Calling one single position**: 
 ```
@@ -46,14 +46,14 @@ Bcftools view -R positions.txt yourvcf.vcf.gz | bcftools query -f '%CHROM\t%POS\
 ```
 
 
-### VCF file statistics 
+## VCF file statistics 
 
 ```
 Bcftools stats yourvcf.vcf.gz
 ```
 
 
-# FAQs 
+## FAQs 
 
 **Q:** _What's the difference between bcftools and vcftools?_
 
