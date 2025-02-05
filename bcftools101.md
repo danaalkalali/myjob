@@ -1,6 +1,6 @@
-##Bcftools basic tutorial 
+# Bcftools basic tutorial 
 
-### Tools you need
+## Tools you need
 - Bcftools
 - Tabix (if your VCFs are indexed `.vcf.gz`, mine are)
 
