@@ -71,5 +71,6 @@ Bcftools stats yourvcf.vcf.gz
 
 
 **Q:** _Is samtools a conglomerate?_
+
 **A:** Yes but it's open-source, so...
 
