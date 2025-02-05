@@ -62,7 +62,7 @@ Bcftools stats yourvcf.vcf.gz
 
 **Q:** _Are all vcfs supposed to be indexed?_
 
-**A:** Unless you own a supercomputer.
+**A:** Unless you own a supercomputer. You should index them especially if they are joint/project VCF with multiple samples.
 
 
 **Q:** _What's the difference between a bcf and a vcf with index files?_
