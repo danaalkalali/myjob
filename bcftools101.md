@@ -51,3 +51,21 @@ Bcftools view -R positions.txt yourvcf.vcf.gz | bcftools query -f '%CHROM\t%POS\
 ```
 Bcftools stats yourvcf.vcf.gz
 ```
+
+
+# FAQs 
+
+**Q:** _What's the difference between bcftools and vcftools?_
+
+**A:** The b in bcftools stands for binary.
+
+
+**Q:** _Are all vcfs supposed to be indexed?_
+
+**A:** 
+
+
+**Q:** _What's the difference between a bcf and a vcf with index files?_
+
+**A:** 
+
