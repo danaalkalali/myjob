@@ -1,8 +1,8 @@
 # Bcftools Hand-holding  
 
 ## Tools you need
-- Bcftools
-- Tabix (if your VCFs are indexed with `.tbi` files, mine are! Otherwise bcftools alone should suffice)
+- [Bcftools](https://samtools.github.io/bcftools/)
+- [Tabix](http://www.htslib.org/doc/tabix.html) (if your VCFs are indexed with `.tbi` files, mine are! Otherwise bcftools alone should suffice)
 
 ### Variant calling
 
