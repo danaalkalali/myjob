@@ -47,8 +47,9 @@ Bcftools view -R positions.txt yourvcf.vcf.gz | bcftools query -f '%CHROM\t%POS\
 
  **Calling missense variants**: 
 ```
-bcftools view -i 'INFO/ANN[*] ~ "missense_variant"' yourannotatedvcf.vcf
+Bcftools view -i 'INFO/ANN[*] ~ "missense_variant"' yourannotatedvcf.vcf # depending on bcftools version (before or after 1.19), view might be changed to `call`
 ```
+
 
 ## VCF file statistics 
 
