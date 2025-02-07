@@ -45,6 +45,10 @@ Bcftools view -t yourlist.txt yourvcf.vcf.gz
 Bcftools view -R positions.txt yourvcf.vcf.gz | bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t[%GT]\n'
 ```
 
+ **Calling missense variants**: 
+```
+bcftools view -i 'INFO/ANN[*] ~ "missense_variant"' yourannotatedvcf.vcf
+```
 
 ## VCF file statistics 
 
