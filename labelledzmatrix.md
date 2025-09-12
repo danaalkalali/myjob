@@ -1,4 +1,4 @@
-## _This is a simple MATLAB script to label your CONN toolbox Z matrix with the ROI names on the x and y axes._
+## 🧠 CONN Toolbox: Creating a labelled Z matrix with ROI names 🧠
 #### 1. Load your .mat file
 ```
 data = load('/Users/dna8993/Downloads/resultsROI_Subject002_Condition001-2.mat');
@@ -35,7 +35,7 @@ clean_names = matlab.lang.makeValidName(roi_names);
 T = array2table(Z, 'VariableNames', clean_names, 'RowNames', roi_names);
 ```
 
-#### Save to Excel
+#### 7. Save to Excel
 ```
 writetable(T, '/Users/dna8993/Downloads/ROI_connectivity_matrix.xlsx', 'WriteRowNames', true);
 disp('Excel file saved as ROI_connectivity_matrix.xlsx, yay');
