@@ -1,7 +1,11 @@
 ## 🧠 CONN Toolbox: Creating a labelled Z matrix with ROI names 🧠
+_You will need:_
+- MATLAB
+- Your condition .mat file from CONN first-level RRC analysis results
+
 #### 1. Load your .mat file
 ```
-data = load('/Users/dna8993/Downloads/resultsROI_Subject002_Condition001-2.mat');
+data = load('resultsROI_Subject002_Condition001-2.mat');
 ```
 
 #### 2. Get Z matrix
@@ -37,6 +41,6 @@ T = array2table(Z, 'VariableNames', clean_names, 'RowNames', roi_names);
 
 #### 7. Save to Excel
 ```
-writetable(T, '/Users/dna8993/Downloads/ROI_connectivity_matrix.xlsx', 'WriteRowNames', true);
+writetable(T, 'ROI_connectivity_matrix.xlsx', 'WriteRowNames', true);
 disp('Excel file saved as ROI_connectivity_matrix.xlsx, yay');
 ```
