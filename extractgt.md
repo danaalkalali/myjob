@@ -18,6 +18,7 @@ module load bcftools/1.9
 ```bash
 bcftools view -r chr__:_______ vcffilename.vcf.gz
 ```
+Refer to my other tutorial bcftools101.md for other ways to extract positions (more than one, missense variants, a list, etc).
 
 ### Step 5. Extract genotype information into table and save output to a .tsv file
 ```bash
